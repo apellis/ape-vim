@@ -1,7 +1,4 @@
 set clipboard=unnamedplus
-set expandtab
-set shiftwidth=4
-set tabstop=4
 set mouse=c
 set number
 set nocompatible              " be iMproved, required
@@ -24,12 +21,15 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'tpope/vim-surround'
-Plugin 'yahiaelgamal/vim-airline'
 Plugin 'mileszs/ack.vim'
 Plugin 'The-NERD-Commenter'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bkad/CamelCaseMotion'
+Plugin 'wincent/command-t'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-arline/vim-airline-themes'
+Bundle 'davidhalter/jedi-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -42,9 +42,6 @@ set fenc=utf-8
 set termencoding=utf-8
 
 colorscheme badwolf         " awesome colorscheme
-set tabstop=4       " number of visual spaces per TAB
-set softtabstop=4   " number of spaces in tab when editing
-set expandtab       " tabs are spaces
 set number              " show line numbers
 set showcmd             " show command in bottom bar
 set cursorline          " highlight current line
@@ -54,7 +51,7 @@ set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 
 " turn off search highlight
-nnoremap <leader><space> :hloff<CR>
+nnoremap <leader><space> :nohl<CR>
 
 set foldenable          " enable folding
 set foldlevelstart=10   " open most folds by default
@@ -91,6 +88,12 @@ augroup configgroup
     autocmd FileType ruby setlocal softtabstop=2
     autocmd FileType ruby setlocal commentstring=#\ %s
     autocmd FileType python setlocal commentstring=#\ %s
+    autocmd FileType python setlocal tabstop=4
+    autocmd FileType python setlocal shiftwidth=4
+    autocmd FileType python setlocal expandtab
+    autocmd FileType cpp setlocal tabstop=2
+    autocmd FileType cpp setlocal shiftwidth=2
+    autocmd FileType cpp expandtab
     autocmd BufEnter *.cls setlocal filetype=java
     autocmd BufEnter *.zsh-theme setlocal filetype=zsh
     autocmd BufEnter Makefile setlocal noexpandtab
@@ -121,3 +124,35 @@ set tags+=~/.vim/tags/cpp
 set tags+=~/.vim/tags/gl
 set tags+=~/.vim/tags/sdl
 set tags+=~/.vim/tags/qt4
+
+" Allow w!! if forgot to sudo
+cmap w!! w !sudo tee % >/dev/null
+
+:imap jk <Esc>
+
+" custom tab behavior
+:nmap <leader>[ :tabprevious<CR>
+:nmap <leader>] :tabnext<CR>
+:map <leader>[ :tabprevious<CR>
+:map <leader>] :tabnext<CR>
+:imap <leader>[ <Esc>:tabprevious<CR>i
+:imap <leader>] <Esc>:tabnext<CR>i
+" :nmap <leader>t :tabe<space>
+" :imap <leader>t <Esc>:tabe<space>
+
+" more intuitive new split behavior
+set splitbelow
+set splitright
+
+" command-T
+" change this on other machines!
+let g:CommandTTraverseSCM = '/Users/aellis/Documents/Code
+
+" airline
+set laststatus=2
+
+set wildmode=longest,list,full
+set wildmenu
+
+" tab completion for python
+set omnifunc=jedi#completions
