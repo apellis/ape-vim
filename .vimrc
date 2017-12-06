@@ -28,7 +28,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'bkad/CamelCaseMotion'
 Plugin 'wincent/command-t'
 Plugin 'vim-airline/vim-airline'
-Plugin 'vim-arline/vim-airline-themes'
+Plugin 'rust-lang/rust.vim'
 Bundle 'davidhalter/jedi-vim'
 
 " All of your Plugins must be added before the following line
@@ -75,14 +75,9 @@ augroup configgroup
     autocmd VimEnter * highlight clear SignColumn
     autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md
                 \:call <SID>StripTrailingWhitespaces()
-    autocmd FileType java setlocal noexpandtab
-    autocmd FileType java setlocal list
-    autocmd FileType java setlocal listchars=tab:+\ ,eol:-
-    autocmd FileType java setlocal formatprg=par\ -w80\ -T4
-    autocmd FileType php setlocal expandtab
-    autocmd FileType php setlocal list
-    autocmd FileType php setlocal listchars=tab:+\ ,eol:-
-    autocmd FileType php setlocal formatprg=par\ -w80\ -T4
+    autocmd FileType java setlocal tabstop=4
+    autocmd FileType java setlocal shiftwidth=4
+    autocmd FileType java setlocal expandtab
     autocmd FileType ruby setlocal tabstop=2
     autocmd FileType ruby setlocal shiftwidth=2
     autocmd FileType ruby setlocal softtabstop=2
@@ -146,7 +141,7 @@ set splitright
 
 " command-T
 " change this on other machines!
-let g:CommandTTraverseSCM = '/Users/aellis/Documents/Code
+let g:CommandTTraverseSCM = '/Users/ape'
 
 " airline
 set laststatus=2
