@@ -68,13 +68,9 @@ nnoremap gV `[v`]
 " toggle gundo
 nnoremap <leader>u :GundoToggle<CR>
 
-let mapleader=","       " leader is comma
-
 augroup configgroup
     autocmd!
     autocmd VimEnter * highlight clear SignColumn
-    autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md
-                \:call <SID>StripTrailingWhitespaces()
     autocmd FileType java setlocal tabstop=4
     autocmd FileType java setlocal shiftwidth=4
     autocmd FileType java setlocal expandtab
