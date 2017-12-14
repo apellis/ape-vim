@@ -128,8 +128,6 @@ cmap w!! w !sudo tee % >/dev/null
 :map <leader>] :tabnext<CR>
 :imap <leader>[ <Esc>:tabprevious<CR>i
 :imap <leader>] <Esc>:tabnext<CR>i
-" :nmap <leader>t :tabe<space>
-" :imap <leader>t <Esc>:tabe<space>
 
 " more intuitive new split behavior
 set splitbelow
